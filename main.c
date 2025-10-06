@@ -125,7 +125,7 @@ void checkLogin() {
             printf("HelloMOCO");
             displaySendyMaily();
         }
-        //curl_easy_cleanup(curl);
+        curl_easy_cleanup(curl);
     }
 }
 
