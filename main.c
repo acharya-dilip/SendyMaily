@@ -26,7 +26,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
     gridParentLoginScreen = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(windowLoginScreen),gridParentLoginScreen);
     //Margins & Paddings
-    gtk_widget_set_halign(gridParentLoginScreen, GTK_ALIGN_START);
+    gtk_widget_set_halign(gridParentLoginScreen, GTK_ALIGN_CENTER);
     gtk_widget_set_valign(gridParentLoginScreen, GTK_ALIGN_CENTER);
 
 
@@ -50,6 +50,8 @@ static void activate (GtkApplication *app,gpointer user_data) {
     gtk_widget_set_margin_bottom(entryGmail,10);
     gtk_widget_set_margin_top(entryGmail,10);
     gtk_widget_set_margin_start(entryGmail,10);
+    gtk_widget_set_margin_end(entryGmail,10);
+
 
 
 
@@ -69,6 +71,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
     gtk_grid_attach(GTK_GRID(gridParentLoginScreen),entryPassword,1,1,3,1);
     //Margins & Paddings
     gtk_widget_set_size_request(entryPassword,270,-1);
+    gtk_widget_set_margin_end(entryPassword,10);
     gtk_widget_set_margin_bottom(entryPassword,10);
     gtk_widget_set_margin_start(entryPassword,10);
 
@@ -76,7 +79,13 @@ static void activate (GtkApplication *app,gpointer user_data) {
 
     //Implementation of button login
     buttonLogin = gtk_button_new_with_label("LOGIN");
-    gtk_grid_attach(GTK_GRID(gridParentLoginScreen),buttonLogin,0,2,4,1);
+    gtk_grid_attach(GTK_GRID(gridParentLoginScreen),buttonLogin,1,2,4,1);
+    //Margins & Paddings
+    gtk_widget_set_halign(buttonLogin,GTK_ALIGN_END);
+    gtk_widget_set_size_request(buttonLogin,270,-1);
+    gtk_widget_set_margin_start(buttonLogin,10);
+    gtk_widget_set_margin_end(buttonLogin,10);
+    gtk_widget_set_margin_bottom(buttonLogin,10);
 
 
 
