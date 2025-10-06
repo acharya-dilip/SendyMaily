@@ -139,7 +139,6 @@ void displaySendyMaily() {
     GtkWidget *labelGmailTo;
     GtkWidget *labelGmailFrom;
     GtkWidget *entryGmailFrom;
-    GtkWidget *lockedEntryGmailFrom;
     GtkWidget *buttonSendMail;
     //Implement the displaySendyMail Window
     windowSendyMaily = gtk_window_new();
@@ -163,6 +162,7 @@ void displaySendyMaily() {
     gtk_widget_set_margin_top(labelGmailTo,10);
     gtk_widget_set_halign(labelGmailTo,GTK_ALIGN_START);
 
+
     //Implementation of the To Gmail Entry
     entryGmailTo=gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryGmailTo,1,0,1,1);
@@ -174,18 +174,22 @@ void displaySendyMaily() {
 
 
 
-
     //Implement the from gmail label
     labelGmailFrom=gtk_label_new("From:");
     gtk_grid_attach(GTK_GRID(gridParent),labelGmailFrom,0,1,1,1);
     gtk_widget_set_margin_start(labelGmailFrom,10);
     gtk_widget_set_margin_top(labelGmailFrom,10);
     gtk_widget_set_halign(labelGmailFrom,GTK_ALIGN_START);
+    gtk_editable_set_text(GTK_EDITABLE(entryGmailFrom),gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
+    gtk_editable_set_editable(GTK_EDITABLE())
 
 
     //Implementation of the from gmail entry
     entryGmailFrom=gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryGmailFrom,1,1,1,1);
+    gtk_editable_set_text(GTK_EDITABLE(entryGmailFrom),gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
+    gtk_editable_set_editable(GTK_EDITABLE(entryGmailFrom),FALSE);
+    //Margins & Paddings
     gtk_widget_set_margin_end(entryGmailFrom,10);
     gtk_widget_set_margin_start(entryGmailFrom,10);
     gtk_widget_set_margin_top(entryGmailFrom,10);
