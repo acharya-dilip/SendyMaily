@@ -4,6 +4,7 @@
 void displaySendyMaily();
 void checkLogin();
 void sendMail();
+void fetchMail();
 
 
 
@@ -230,7 +231,23 @@ void displaySendyMaily() {
 
 }
 
+void fetchMail() {
+    FILE *file = fopen("email.txt","w");
+    if (!file) return;
+    if (file) {
+        fprintf("To: %s \r\n"
+                "From: %s \r\n"
+                "Subject: %s \r\n"
+                "\r\n"
+                "%s\r\n",
+                gtk_editable_get_text(GTK_EDITABLE(entryGmailTo)),
+                gtk_editable_get_text(GTK_EDITABLE(entryGmail)),
+                gtk_editable_get_text(GTK_EDITABLE(entryGmailSubject)),
+                gtk_text_view_get_buffer(GTK_TEXT_VIEW(textviewGmailBody)-1));
 
+        fclose(file);
+    }
+}
 
 void sendMail() {
     CURL *curl=curl_easy_init();
@@ -239,9 +256,29 @@ void sendMail() {
         //Connecting to the smpt sevr
         curl_easy_setopt(curl,CURLOPT_URL,"smtp://smtp.gmail.com:587");
         curl_easy_setopt(curl,CURLOPT_USE_SSL,(long)CURLUSESSL_ALL);
-
+        //sender credentials
         curl_easy_setopt(curl,CURLOPT_USERNAME,gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
         curl_easy_setopt(curl,CURLOPT_PASSWORD,gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
+        //sender mail
+        curl_easy_setopt(curl,CURLOPT_MAIL_FROM,gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
+        //Reciver mail
+        struct curl_slist *recipients=NULL;
+        recipients = curl_slist_append(recipients,gtk_editable_get_text(GTK_EDITABLE(entryGmailTo)));
+        curl_easy_setopt(curl,CURLOPT_MAIL_RCPT,recipients);
+        //Sending email payload
+        FILE *payload = fopen("email.txt","r");
+        curl_easy_setopt(curl,CURLOPT_READDATA,payload);
+        curl_easy_setopt(curl,CURLOPT_UPLOAD,1L);
+
+        //perform curl task
+        curl_easy_perform(curl);
+        //close file
+        fclose(payload);
+        //cleanup
+        curl_slist_free_all(recipients);
+        curl_easy_cleanup(curl);
+
+
     }
 }
 
