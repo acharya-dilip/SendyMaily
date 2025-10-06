@@ -8,8 +8,9 @@ void checkLogin();
 
 GtkWidget *entryGmail;
 GtkWidget *entryPassword;
+GtkWidget *windowLoginScreen;
 static void activate (GtkApplication *app,gpointer user_data) {
-    GtkWidget *windowLoginScreen;
+
     GtkWidget *gridParentLoginScreen;
     GtkWidget *labelGmail;
     GtkWidget *labelPassword;
@@ -92,7 +93,25 @@ static void activate (GtkApplication *app,gpointer user_data) {
 }
 
 void checkLogin() {
+    CURL *curl=curl_easy_init();
+    CURLcode res;
+    if (!curl) return;
+    if (curl) {
+        //conectin to the google smtp server to send credentials
+        curl_easy_setopt(curl,CURLOPT_URL,"smtp://smtp.gmail.com:587");
+        curl_easy_setopt(curl,CURLOPT_USE_SSL,(long)CURLUSESSL_ALL);
+        //sending the credentials
+        curl_easy_setopt(curl,CURLOPT_USERNAME,gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
+        curl_easy_setopt(curl,CURLOPT_USERNAME,gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
 
+        res=curl_easy_perform(curl);
+
+        if (res==CURLE_OK) {
+            gtk_widget_set_visible(windowLoginScreen,FALSE);
+            displaySendyMaily();
+        }
+        curl_easy_cleanup(curl);
+    }
 }
 
 
