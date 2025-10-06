@@ -6,14 +6,13 @@ void checkLogin();
 
 
 
-
+GtkWidget *entryGmail;
+GtkWidget *entryPassword;
 static void activate (GtkApplication *app,gpointer user_data) {
     GtkWidget *windowLoginScreen;
     GtkWidget *gridParentLoginScreen;
     GtkWidget *labelGmail;
-    GtkWidget *entryGmail;
     GtkWidget *labelPassword;
-    GtkWidget *entryPassword;
     GtkWidget *buttonLogin;
 
 
