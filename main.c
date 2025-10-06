@@ -27,6 +27,15 @@ static void activate (GtkApplication *app,gpointer user_data) {
     gtk_widget_set_halign(parentGridLoginScreen, GTK_ALIGN_CENTER);
     gtk_widget_set_valign(parentGridLoginScreen, GTK_ALIGN_CENTER);
 
+    //Implementation of entry Gmail
+    entryGmail = gtk_entry_new();
+    gtk_entry_set_placeholder_text(GTK_ENTRY(entryGmail),"ENTER GMAIL");
+
+
+    //Implementation of entry Password
+    entryPassword = gtk_entry_new();
+    gtk_entry_set_placeholder_text(GTK_ENTRY(entryPassword),"ENTER PASSWORD");
+
 
 
 
