@@ -143,7 +143,6 @@ void checkLogin() {
 
         if (res == CURLE_OK) {
             gtk_widget_set_visible(windowLoginScreen,FALSE);
-            printf("HelloMOCO");
             displaySendyMaily();
         }
         curl_easy_cleanup(curl);
@@ -305,6 +304,7 @@ void sendMail() {
         curl_easy_perform(curl);
         //close file
         fclose(payload);
+        remove(email.txt);
         //cleanup
         curl_slist_free_all(recipients);
         curl_easy_cleanup(curl);
