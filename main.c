@@ -13,6 +13,13 @@ static void activate (GtkApplication *app,gpointer user_data) {
 
 void displaySendyMaily() {
     GtkWidget windowSendyMaily;
+    GtkWidget gridParent;
+    GtkWidget entryGmailFrom;
+    GtkWidget entryGmailTo;
+    GtkWidget entryGmailSubject;
+    GtkWidget textviewGmailBody;
+    GtkWidget buttonSendMail;
+
 
 }
 
