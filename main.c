@@ -208,12 +208,24 @@ void displaySendyMaily() {
 
     //Implementation of textviewGmailBody
     textviewGmailBody=gtk_text_view_new();
-    gtk_grid_attach(GTK_GRID(gridParent),textviewGmailBody,0,3,2,8);
+    gtk_grid_attach(GTK_GRID(gridParent),textviewGmailBody,0,3,2,1);
     gtk_widget_set_size_request(textviewGmailBody,380,380);
     //Margins & Paddings
     gtk_widget_set_margin_top(textviewGmailBody,10);
     gtk_widget_set_margin_start(textviewGmailBody,10);
     gtk_widget_set_margin_end(textviewGmailBody,10);
+
+    //Implementation of buttonSendMail
+    buttonSendMail=gtk_button_new_with_label("SEND");
+    gtk_grid_attach(GTK_GRID(gridParent),buttonSendMail,0,4,2,1);
+    gtk_widget_set_size_request(buttonSendMail,380,-1);
+    //Margins & paddings
+    gtk_widget_set_margin_start(buttonSendMail,10);
+    gtk_widget_set_margin_end(buttonSendMail,10);
+    gtk_widget_set_margin_top(buttonSendMail,10);
+    gtk_widget_set_margin_bottom(buttonSendMail,10);
+
+
 
 
 
