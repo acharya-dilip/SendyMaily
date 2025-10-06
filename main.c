@@ -100,6 +100,13 @@ void checkLogin() {
         //conectin to the google smtp server to send credentials
         curl_easy_setopt(curl,CURLOPT_URL,"smtp://smtp.gmail.com:587");
         curl_easy_setopt(curl,CURLOPT_USE_SSL,(long)CURLUSESSL_ALL);
+
+        //To ignore other steps only do the handshake
+        curl_easy_setopt(curl,CURLOPT_NOBODY,1L);
+        curl_easy_setopt(curl,CURLOPT_HEADER,0L);
+        curl_easy_setopt(curl,CURLOPT_UPLOAD,0L);
+        curl_easy_setopt(curl,CURLOPT_READFUNCTION,NULL);
+
         //sending the credentials
         curl_easy_setopt(curl,CURLOPT_USERNAME,gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
         curl_easy_setopt(curl,CURLOPT_USERNAME,gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
@@ -123,6 +130,9 @@ void displaySendyMaily() {
     GtkWidget *entryGmailSubject;
     GtkWidget *textviewGmailBody;
     GtkWidget *buttonSendMail;
+
+    windowSendyMaily = gtk_window_new();
+    gtk_window_set_title(GTK_WINDOW(windowSendyMaily),"SendyMaily");
 
 
 }
