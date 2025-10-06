@@ -84,6 +84,10 @@ static void activate (GtkApplication *app,gpointer user_data) {
     //gtk_widget_set_margin_bottom(entryPassword,10);
     gtk_widget_set_margin_start(entryPassword,10);
 
+    //Function to fetch the login info
+    fetchLoginInfo();
+
+
     //Implementation of save login info checkbox
     checkboxSaveLogin = gtk_check_button_new_with_label("Save Login Info");
     gtk_grid_attach(GTK_GRID(gridParentLoginScreen),checkboxSaveLogin,1,2,1,1);
