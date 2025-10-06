@@ -7,7 +7,12 @@ void displaySendyMaily();
 
 
 static void activate (GtkApplication *app,gpointer user_data) {
-    displaySendyMaily();
+    GtkWidget windowLoginScreen;
+    GtkWidget parentGridLoginScreen;
+    GtkWidget entryGmail;
+    GtkWidget entryPassword;
+    GtkWidget buttonLogin;
+
 }
 
 
