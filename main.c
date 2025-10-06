@@ -206,6 +206,16 @@ void displaySendyMaily() {
     gtk_widget_set_margin_end(entryGmailSubject,10);
 
 
+    //Implementation of textviewGmailBody
+    textviewGmailBody=gtk_text_view_new();
+    gtk_grid_attach(GTK_GRID(gridParent),textviewGmailBody,0,3,2,8);
+    gtk_widget_set_size_request(textviewGmailBody,380,380);
+    //Margins & Paddings
+    gtk_widget_set_margin_top(textviewGmailBody,10);
+    gtk_widget_set_margin_start(textviewGmailBody,10);
+    gtk_widget_set_margin_end(textviewGmailBody,10);
+
+
 
 
 }
