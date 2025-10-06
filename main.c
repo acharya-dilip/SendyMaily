@@ -43,7 +43,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
 
     //Implementation of entry Gmail
     entryGmail = gtk_entry_new();
-    gtk_entry_set_placeholder_text(GTK_ENTRY(entryGmail),"ENTER GMAIL");
+    //gtk_entry_set_placeholder_text(GTK_ENTRY(entryGmail),"ENTER GMAIL");
     gtk_grid_attach(GTK_GRID(gridParentLoginScreen),entryGmail,1,0,3,1);
     //Margins & Paddings
     gtk_widget_set_size_request(entryGmail,270,-1);
@@ -66,7 +66,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
 
     //Implementation of entry Password
     entryPassword = gtk_entry_new();
-    gtk_entry_set_placeholder_text(GTK_ENTRY(entryPassword),"ENTER PASSWORD");
+    //gtk_entry_set_placeholder_text(GTK_ENTRY(entryPassword),"ENTER PASSWORD");
     gtk_grid_attach(GTK_GRID(gridParentLoginScreen),entryPassword,1,1,3,1);
     //Margins & Paddings
     gtk_widget_set_size_request(entryPassword,270,-1);
