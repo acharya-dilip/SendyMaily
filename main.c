@@ -7,7 +7,7 @@ void sendMail();
 void fetchMail();
 void closeApp();
 void saveLoginInfo();
-void removeLoginInfo();
+void logout();
 void fetchLoginInfo();
 
 GtkWidget *entryGmail;
@@ -181,7 +181,7 @@ void displaySendyMaily() {
     //Implementation of buttonLogout
     buttonLogout = gtk_button_new_with_label("⏻");
     gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbarSendyMaily),buttonLogout);
-    g_signal_connect(buttonLogout,"clicked",G_CALLBACK(removeLoginInfo),NULL);
+    g_signal_connect(buttonLogout,"clicked",G_CALLBACK(logout),NULL);
 
     //Implementation of gridparent
     gridParent =gtk_grid_new();
@@ -341,12 +341,14 @@ void saveLoginInfo() {
 
 }
 
-void removeLoginInfo() {
+void logout() {
     FILE *file = fopen("logininfo.txt","w");
     fprintf(file,
         "%s %s"
         ,"","");
     fclose(file);
+    closeApp();
+
 }
 
 void fetchLoginInfo() {
