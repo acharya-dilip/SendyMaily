@@ -158,16 +158,40 @@ void displaySendyMaily() {
     //Implement the To gmail label
     labelGmailTo=gtk_label_new("To:");
     gtk_grid_attach(GTK_GRID(gridParent),labelGmailTo,0,0,1,1);
+    //Margins and Paddings
+    gtk_widget_set_margin_start(labelGmailTo,10);
+    gtk_widget_set_margin_top(labelGmailTo,10);
+    gtk_widget_set_halign(labelGmailTo,GTK_ALIGN_START);
+
     //Implementation of the To Gmail Entry
     entryGmailTo=gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryGmailTo,1,0,1,1);
+    //Margins & paddings
+    gtk_widget_set_margin_end(entryGmailTo,10);
+    gtk_widget_set_margin_start(entryGmailTo,10);
+    gtk_widget_set_margin_top(entryGmailTo,10);
+    gtk_widget_set_size_request(entryGmailTo,350,-1);
+
+
+
 
     //Implement the from gmail label
     labelGmailFrom=gtk_label_new("From:");
     gtk_grid_attach(GTK_GRID(gridParent),labelGmailFrom,0,1,1,1);
+    gtk_widget_set_margin_start(labelGmailFrom,10);
+    gtk_widget_set_margin_top(labelGmailFrom,10);
+    gtk_widget_set_halign(labelGmailFrom,GTK_ALIGN_START);
+
+
     //Implementation of the from gmail entry
     entryGmailFrom=gtk_entry_new();
     gtk_grid_attach(GTK_GRID(gridParent),entryGmailFrom,1,1,1,1);
+    gtk_widget_set_margin_end(entryGmailFrom,10);
+    gtk_widget_set_margin_start(entryGmailFrom,10);
+    gtk_widget_set_margin_top(entryGmailFrom,10);
+    gtk_widget_set_size_request(entryGmailFrom,350,-1);
+
+
 
 
 }
