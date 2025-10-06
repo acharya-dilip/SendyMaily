@@ -162,7 +162,7 @@ void displaySendyMaily() {
     GtkWidget *entryGmailFrom;
     GtkWidget *buttonSendMail;
     GtkWidget *labelTitleHeaderBar;
-    GtkWidget *headerBarSendyMaily;
+    GtkWidget *headerbarSendyMaily;
     GtkWidget *buttonLogout;
 
     //Implement the displaySendyMail Window
@@ -173,10 +173,15 @@ void displaySendyMaily() {
     g_signal_connect(windowSendyMaily,"destroy",G_CALLBACK(closeApp),NULL);
 
     //Implementation of headerBarSendyMaily
-    headerBarSendyMaily = gtk_header_bar_new();
+    headerbarSendyMaily = gtk_header_bar_new();
     labelTitleHeaderBar=gtk_label_new("SendyMaily");
-    gtk_header_bar_set_title_widget(GTK_HEADER_BAR(headerBarSendyMaily),labelTitleHeaderBar);
-    gtk_window_set_titlebar(GTK_WINDOW(windowSendyMaily),headerBarSendyMaily);
+    gtk_header_bar_set_title_widget(GTK_HEADER_BAR(headerbarSendyMaily),labelTitleHeaderBar);
+    gtk_window_set_titlebar(GTK_WINDOW(windowSendyMaily),headerbarSendyMaily);
+
+    //Implementation of buttonLogout
+    buttonLogout = gtk_button_new_with_label("⏻");
+    gtk_header_bar_pack_start(GTK_HEADER_BAR(headerbarSendyMaily),buttonLogout);
+    g_signal_connect(buttonLogout,"clicked",G_CALLBACK(removeLoginInfo),NULL);
 
     //Implementation of gridparent
     gridParent =gtk_grid_new();
