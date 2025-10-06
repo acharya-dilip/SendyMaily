@@ -161,13 +161,22 @@ void displaySendyMaily() {
     GtkWidget *labelGmailFrom;
     GtkWidget *entryGmailFrom;
     GtkWidget *buttonSendMail;
+    GtkWidget *labelTitleHeaderBar;
+    GtkWidget *headerBarSendyMaily;
+    GtkWidget *buttonLogout;
+
     //Implement the displaySendyMail Window
     windowSendyMaily = gtk_window_new();
-    gtk_window_set_title(GTK_WINDOW(windowSendyMaily),"SendyMaily");
     gtk_window_set_default_size(GTK_WINDOW(windowSendyMaily),400,400);
     gtk_window_present(GTK_WINDOW(windowSendyMaily));
     //Call closeApp function when windowSendyMail get's closed
     g_signal_connect(windowSendyMaily,"destroy",G_CALLBACK(closeApp),NULL);
+
+    //Implementation of headerBarSendyMaily
+    headerBarSendyMaily = gtk_header_bar_new();
+    labelTitleHeaderBar=gtk_label_new("SendyMaily");
+    gtk_header_bar_set_title_widget(GTK_HEADER_BAR(headerBarSendyMaily),labelTitleHeaderBar);
+    gtk_window_set_titlebar(GTK_WINDOW(windowSendyMaily),headerBarSendyMaily);
 
     //Implementation of gridparent
     gridParent =gtk_grid_new();
