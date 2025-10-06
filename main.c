@@ -17,6 +17,9 @@ GtkWidget *checkboxSaveLogin;
 
 
 static void activate (GtkApplication *app,gpointer user_data) {
+    //Creation of logininfo.txt if it isn't alr there
+    FILE *file = fopen("logininfo.txt","w");
+    fclose(file);
 
     GtkWidget *gridParentLoginScreen;
     GtkWidget *labelGmail;
