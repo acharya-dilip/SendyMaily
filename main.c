@@ -8,6 +8,7 @@ void fetchMail();
 void closeApp();
 void saveLoginInfo();
 void removeLoginInfo();
+void fetchLoginInfo();
 
 GtkWidget *entryGmail;
 GtkWidget *entryPassword;
@@ -312,8 +313,8 @@ void saveLoginInfo() {
 
     FILE *file = fopen("logininfo.txt","w");
     fprintf(file,
-        "%s %s %d"
-        ,gtk_editable_get_text(GTK_EDITABLE(entryGmail)),gtk_editable_get_text(GTK_EDITABLE(entryPassword)),1);
+        "%s %s"
+        ,gtk_editable_get_text(GTK_EDITABLE(entryGmail)),gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
     fclose(file);
 
 }
@@ -321,9 +322,21 @@ void saveLoginInfo() {
 void removeLoginInfo() {
     FILE *file = fopen("logininfo.txt","w");
     fprintf(file,
-        "%s %s %d"
-        ,"","",0);
+        "%s %s"
+        ,"","");
     fclose(file);
+}
+
+void fetchLoginInfo() {
+    char gmail[50];
+    char password[50];
+    FILE *file = fopen("logininfo.txt","r");
+    fscanf(file,
+        "%s %s",
+        &gmail,&password);
+    gtk_editable_set_text(GTK_EDITABLE(entryGmail),gmail);
+    gtk_editable_set_text(GTK_EDITABLE(entryPassword),password);
+
 }
 
 
