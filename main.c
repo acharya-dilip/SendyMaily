@@ -47,19 +47,15 @@ static void activate (GtkApplication *app,gpointer user_data) {
     //Margins & Paddings
     gtk_widget_set_halign(labelGmail,GTK_ALIGN_END);
     gtk_widget_set_margin_start(labelGmail,10);
-    //gtk_widget_set_margin_bottom(labelGmail,10);
     gtk_widget_set_margin_top(labelGmail,10);
 
 
 
     //Implementation of entry Gmail
     entryGmail = gtk_entry_new();
-    //gtk_entry_set_placeholder_text(GTK_ENTRY(entryGmail),"ENTER GMAIL");
     gtk_grid_attach(GTK_GRID(gridParentLoginScreen),entryGmail,1,0,3,1);
     //Margins & Paddings
     gtk_widget_set_size_request(entryGmail,270,-1);
-    //gtk_widget_set_margin_bottom(entryGmail,10);
-    //gtk_widget_set_margin_top(entryGmail,10);
     gtk_widget_set_margin_start(entryGmail,10);
     gtk_widget_set_margin_end(entryGmail,10);
 
@@ -72,19 +68,16 @@ static void activate (GtkApplication *app,gpointer user_data) {
     //Margins & Paddings
     gtk_widget_set_halign(labelPassword,GTK_ALIGN_END);
     gtk_widget_set_margin_start(labelPassword,10);
-    //gtk_widget_set_margin_bottom(labelPassword,10);
 
 
 
     //Implementation of entry Password
     entryPassword = gtk_entry_new();
-    //gtk_entry_set_placeholder_text(GTK_ENTRY(entryPassword),"ENTER PASSWORD");
     gtk_entry_set_visibility(GTK_ENTRY(entryPassword),FALSE);
     gtk_grid_attach(GTK_GRID(gridParentLoginScreen),entryPassword,1,1,3,1);
     //Margins & Paddings
     gtk_widget_set_size_request(entryPassword,270,-1);
     gtk_widget_set_margin_end(entryPassword,10);
-    //gtk_widget_set_margin_bottom(entryPassword,10);
     gtk_widget_set_margin_start(entryPassword,10);
 
     //Function to fetch the login info
@@ -95,7 +88,6 @@ static void activate (GtkApplication *app,gpointer user_data) {
     checkboxSaveLogin = gtk_check_button_new_with_label("Save Login Info");
     gtk_grid_attach(GTK_GRID(gridParentLoginScreen),checkboxSaveLogin,1,2,1,1);
     g_signal_connect(checkboxSaveLogin,"toggled",G_CALLBACK(saveLoginInfo),NULL);
-
     //Margins & Paddings
     gtk_widget_set_margin_start(checkboxSaveLogin,10);
 
@@ -118,7 +110,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
 void checkLogin() {
     CURL *curl=curl_easy_init();
     CURLcode res;
-    //if (!curl) return;
+    if (!curl) return;
     if (curl) {
         //conectin to the google smtp server to send credentials
         curl_easy_setopt(curl,CURLOPT_URL,"smtp://smtp.gmail.com:587");
@@ -131,14 +123,8 @@ void checkLogin() {
         curl_easy_setopt(curl,CURLOPT_READFUNCTION,NULL);
 
         //sending the credentials
-        // char gmail[50];
-        // strcpy(gmail,gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
-        // char password[50];
-        // strcpy(password,gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
         curl_easy_setopt(curl,CURLOPT_USERNAME,gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
-        //printf("%s",gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
         curl_easy_setopt(curl,CURLOPT_PASSWORD,gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
-        //printf("%s",gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
 
         res = curl_easy_perform(curl);
 
@@ -332,7 +318,6 @@ void closeApp() {
     gtk_window_destroy(GTK_WINDOW(windowLoginScreen));
 }
 void saveLoginInfo() {
-    printf("SAVE LOGIN INFO EXECUTING");
     FILE *file = fopen("logininfo.txt","w");
     fprintf(file,
         "%s %s"
