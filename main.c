@@ -138,6 +138,7 @@ void displaySendyMaily() {
     GtkWidget *gridParent;
     GtkWidget *labelGmailTo;
     GtkWidget *labelGmailFrom;
+    GtkWidget *entryGmailFrom;
     GtkWidget *lockedEntryGmailFrom;
     GtkWidget *buttonSendMail;
     //Implement the displaySendyMail Window
@@ -149,10 +150,16 @@ void displaySendyMaily() {
     //Implement the To gmail label
     labelGmailTo=gtk_label_new("To:");
     gtk_grid_attach(GTK_GRID(gridParent),labelGmailTo,0,0,1,1);
+    //Implementation of the To Gmail Entry
+    entryGmailTo=gtk_entry_new();
+    gtk_grid_attach(GTK_GRID(gridParent),entryGmailTo,1,0,1,1);
 
     //Implement the from gmail label
     labelGmailFrom=gtk_label_new("From:");
     gtk_grid_attach(GTK_GRID(gridParent),labelGmailFrom,0,1,1,1);
+    //Implementation of the from gmail entry
+    entryGmailFrom=gtk_entry_new();
+    gtk_grid_attach(GTK_GRID(gridParent),entryGmailFrom,1,1,1,1);
 
 
 }
