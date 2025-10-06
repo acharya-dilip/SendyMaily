@@ -20,6 +20,14 @@ static void activate (GtkApplication *app,gpointer user_data) {
     gtk_window_set_default_size(GTK_WINDOW(windowLoginScreen),350,150);
     gtk_window_present(GTK_WINDOW(windowLoginScreen));
 
+    //Implementation of the parent grid for login Window
+    parentGridLoginScreen = gtk_grid_new();
+    gtk_window_set_child(GTK_WINDOW(windowLoginScreen),parentGridLoginScreen);
+    //Margins & Paddings
+    gtk_widget_set_halign(parentGridLoginScreen, GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(parentGridLoginScreen, GTK_ALIGN_CENTER);
+
+
 
 
 
