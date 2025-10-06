@@ -11,6 +11,8 @@ void closeApp();
 GtkWidget *entryGmail;
 GtkWidget *entryPassword;
 GtkWidget *windowLoginScreen;
+GtkWidget *checkboxSaveLogin;
+
 
 static void activate (GtkApplication *app,gpointer user_data) {
 
@@ -18,7 +20,6 @@ static void activate (GtkApplication *app,gpointer user_data) {
     GtkWidget *labelGmail;
     GtkWidget *labelPassword;
     GtkWidget *buttonLogin;
-    GtkWidget *checkboxSaveLogin;
 
 
     //Implementation of the login screen window
@@ -242,6 +243,14 @@ void displaySendyMaily() {
 }
 
 void fetchMail() {
+    //Extracts text from the textview
+    GtkTextBuffer *mailbody = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textviewGmailBody));
+    GtkTextIter start, end;
+    gchar *temp;
+    gtk_text_buffer_get_start_iter(mailbody,&start);
+    gtk_text_buffer_get_end_iter(mailbody,&end);
+    temp=gtk_text_buffer_get_text(mailbody,&start,&end,FALSE);
+
     FILE *file = fopen("email.txt","w");
     if (!file) return;
     if (file) {
@@ -254,7 +263,7 @@ void fetchMail() {
                 gtk_editable_get_text(GTK_EDITABLE(entryGmailTo)),
                 gtk_editable_get_text(GTK_EDITABLE(entryGmail)),
                 gtk_editable_get_text(GTK_EDITABLE(entryGmailSubject)),
-                gtk_text_view_get_buffer(GTK_TEXT_VIEW(textviewGmailBody)-1));
+                temp);
 
         fclose(file);
     }
@@ -277,6 +286,7 @@ void sendMail() {
         recipients = curl_slist_append(recipients,gtk_editable_get_text(GTK_EDITABLE(entryGmailTo)));
         curl_easy_setopt(curl,CURLOPT_MAIL_RCPT,recipients);
         //Sending email payload
+        fetchMail();
         FILE *payload = fopen("email.txt","r");
         curl_easy_setopt(curl,CURLOPT_READDATA,payload);
         curl_easy_setopt(curl,CURLOPT_UPLOAD,1L);
