@@ -63,7 +63,6 @@ static void activate (GtkApplication *app,gpointer user_data) {
 
 
 
-
     //Implementation of entry Password
     entryPassword = gtk_entry_new();
     //gtk_entry_set_placeholder_text(GTK_ENTRY(entryPassword),"ENTER PASSWORD");
@@ -72,6 +71,14 @@ static void activate (GtkApplication *app,gpointer user_data) {
     gtk_widget_set_size_request(entryPassword,270,-1);
     gtk_widget_set_margin_bottom(entryPassword,10);
     gtk_widget_set_margin_start(entryPassword,10);
+
+
+
+    //Implementation of button login
+    buttonLogin = gtk_button_new_with_label("LOGIN");
+    gtk_grid_attach(GTK_GRID(gridParentLoginScreen),buttonLogin,0,2,4,1);
+
+
 
 
 
