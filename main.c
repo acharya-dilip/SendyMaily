@@ -136,13 +136,23 @@ GtkWidget *textviewGmailBody;
 void displaySendyMaily() {
 
     GtkWidget *gridParent;
-    GtkWidget *entryGmailFrom;
+    GtkWidget *labelGmailTo;
+    GtkWidget *labelGmailFrom;
+    GtkWidget *lockedEntryGmailFrom;
     GtkWidget *buttonSendMail;
-
+    //Implement the displaySendyMail Window
     windowSendyMaily = gtk_window_new();
     gtk_window_set_title(GTK_WINDOW(windowSendyMaily),"SendyMaily");
     gtk_window_set_default_size(GTK_WINDOW(windowSendyMaily),400,400);
     gtk_window_present(GTK_WINDOW(windowSendyMaily));
+
+    //Implement the To gmail label
+    labelGmailTo=gtk_label_new("To:");
+    gtk_grid_attach(GTK_GRID(gridParent),labelGmailTo,0,0,1,1);
+
+    //Implement the from gmail label
+    labelGmailFrom=gtk_label_new("From:");
+    gtk_grid_attach(GTK_GRID(gridParent),labelGmailFrom,0,1,1,1);
 
 
 }
