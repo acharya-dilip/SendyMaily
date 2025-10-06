@@ -180,8 +180,7 @@ void displaySendyMaily() {
     gtk_widget_set_margin_start(labelGmailFrom,10);
     gtk_widget_set_margin_top(labelGmailFrom,10);
     gtk_widget_set_halign(labelGmailFrom,GTK_ALIGN_START);
-    gtk_editable_set_text(GTK_EDITABLE(entryGmailFrom),gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
-    gtk_editable_set_editable(GTK_EDITABLE())
+
 
 
     //Implementation of the from gmail entry
@@ -194,6 +193,17 @@ void displaySendyMaily() {
     gtk_widget_set_margin_start(entryGmailFrom,10);
     gtk_widget_set_margin_top(entryGmailFrom,10);
     gtk_widget_set_size_request(entryGmailFrom,350,-1);
+
+    //Implementation of entryGmailSubject
+    entryGmailSubject = gtk_entry_new();
+    gtk_grid_attach(GTK_GRID(gridParent),entryGmailSubject,0,2,2,1);
+    gtk_entry_set_placeholder_text(GTK_ENTRY(entryGmailSubject),"Enter Subject");
+
+    //Margins & Paddings
+    gtk_widget_set_margin_top(entryGmailSubject,10);
+    gtk_widget_set_size_request(entryGmailSubject,380,-1);
+    gtk_widget_set_margin_start(entryGmailSubject,10);
+    gtk_widget_set_margin_end(entryGmailSubject,10);
 
 
 
