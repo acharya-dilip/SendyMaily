@@ -18,7 +18,7 @@ GtkWidget *checkboxSaveLogin;
 
 static void activate (GtkApplication *app,gpointer user_data) {
     //Creation of logininfo.txt if it isn't alr there
-    FILE *file = fopen("logininfo.txt","w");
+    FILE *file = fopen("logininfo.txt","a");
     fclose(file);
 
     GtkWidget *gridParentLoginScreen;
@@ -94,6 +94,8 @@ static void activate (GtkApplication *app,gpointer user_data) {
     //Implementation of save login info checkbox
     checkboxSaveLogin = gtk_check_button_new_with_label("Save Login Info");
     gtk_grid_attach(GTK_GRID(gridParentLoginScreen),checkboxSaveLogin,1,2,1,1);
+    g_signal_connect(checkboxSaveLogin,"toggled",G_CALLBACK(saveLoginInfo),NULL);
+
     //Margins & Paddings
     gtk_widget_set_margin_start(checkboxSaveLogin,10);
 
@@ -114,7 +116,6 @@ static void activate (GtkApplication *app,gpointer user_data) {
 }
 
 void checkLogin() {
-    g_signal_connect(checkboxSaveLogin,"checked",G_CALLBACK(saveLoginInfo),NULL);
     CURL *curl=curl_easy_init();
     CURLcode res;
     //if (!curl) return;
@@ -317,7 +318,7 @@ void closeApp() {
     gtk_window_destroy(GTK_WINDOW(windowLoginScreen));
 }
 void saveLoginInfo() {
-
+    printf("SAVE LOGIN INFO EXECUTING");
     FILE *file = fopen("logininfo.txt","w");
     fprintf(file,
         "%s %s"
