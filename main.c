@@ -5,7 +5,7 @@ void displaySendyMaily();
 void checkLogin();
 void sendMail();
 void fetchMail();
-
+void closeApp();
 
 
 GtkWidget *entryGmail;
@@ -147,6 +147,8 @@ void displaySendyMaily() {
     gtk_window_set_title(GTK_WINDOW(windowSendyMaily),"SendyMaily");
     gtk_window_set_default_size(GTK_WINDOW(windowSendyMaily),400,400);
     gtk_window_present(GTK_WINDOW(windowSendyMaily));
+    //Call closeApp function when windowSendyMail get's closed
+    g_signal_connect(windowSendyMaily,"destroy",G_CALLBACK(closeApp),NULL);
 
     //Implementation of gridparent
     gridParent =gtk_grid_new();
@@ -235,7 +237,8 @@ void fetchMail() {
     FILE *file = fopen("email.txt","w");
     if (!file) return;
     if (file) {
-        fprintf("To: %s \r\n"
+        fprintf(file,
+                "To: %s \r\n"
                 "From: %s \r\n"
                 "Subject: %s \r\n"
                 "\r\n"
@@ -282,6 +285,9 @@ void sendMail() {
     }
 }
 
+void closeApp() {
+    gtk_window_destroy(GTK_WINDOW(windowLoginScreen));
+}
 
 
 
