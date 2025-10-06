@@ -2,6 +2,7 @@
 #include <gtk/gtk.h>
 #include <curl/curl.h>
 void displaySendyMaily();
+void checkLogin();
 
 
 
@@ -80,6 +81,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
     //Implementation of button login
     buttonLogin = gtk_button_new_with_label("LOGIN");
     gtk_grid_attach(GTK_GRID(gridParentLoginScreen),buttonLogin,1,2,4,1);
+    g_signal_connect(buttonLogin,"clicked",G_CALLBACK(checkLogin),NULL);
     //Margins & Paddings
     gtk_widget_set_halign(buttonLogin,GTK_ALIGN_END);
     gtk_widget_set_size_request(buttonLogin,270,-1);
@@ -88,13 +90,9 @@ static void activate (GtkApplication *app,gpointer user_data) {
     gtk_widget_set_margin_bottom(buttonLogin,10);
 
 
+}
 
-
-
-
-
-
-
+void checkLogin() {
 
 }
 
