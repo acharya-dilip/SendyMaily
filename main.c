@@ -7,23 +7,28 @@ void displaySendyMaily();
 
 
 static void activate (GtkApplication *app,gpointer user_data) {
-    GtkWidget windowLoginScreen;
-    GtkWidget parentGridLoginScreen;
-    GtkWidget entryGmail;
-    GtkWidget entryPassword;
-    GtkWidget buttonLogin;
+    GtkWidget *windowLoginScreen;
+    GtkWidget *parentGridLoginScreen;
+    GtkWidget *entryGmail;
+    GtkWidget *entryPassword;
+    GtkWidget *buttonLogin;
+
+    windowLoginScreen = gtk_window_new();
+    gtk_window_set_title(GTK_WINDOW(windowLoginScreen),"LOGIN");
+
+
 
 }
 
 
 void displaySendyMaily() {
-    GtkWidget windowSendyMaily;
-    GtkWidget gridParent;
-    GtkWidget entryGmailFrom;
-    GtkWidget entryGmailTo;
-    GtkWidget entryGmailSubject;
-    GtkWidget textviewGmailBody;
-    GtkWidget buttonSendMail;
+    GtkWidget *windowSendyMaily;
+    GtkWidget *gridParent;
+    GtkWidget *entryGmailFrom;
+    GtkWidget *entryGmailTo;
+    GtkWidget *entryGmailSubject;
+    GtkWidget *textviewGmailBody;
+    GtkWidget *buttonSendMail;
 
 
 }
