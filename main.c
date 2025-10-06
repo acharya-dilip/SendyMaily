@@ -307,14 +307,6 @@ void closeApp() {
     gtk_window_destroy(GTK_WINDOW(windowLoginScreen));
 }
 
-
-
-
-
-
-
-
-
 int main(int argc, char **argv) {
     GtkApplication *app;
     int status;
