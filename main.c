@@ -6,7 +6,7 @@ void checkLogin();
 void sendMail();
 void fetchMail();
 void closeApp();
-
+void saveLoginInfo();
 
 GtkWidget *entryGmail;
 GtkWidget *entryPassword;
@@ -105,6 +105,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
 }
 
 void checkLogin() {
+    g_signal_connect(checkboxSaveLogin,"checked",G_CALLBACK(saveLoginInfo),NULL);
     CURL *curl=curl_easy_init();
     CURLcode res;
     //if (!curl) return;
@@ -306,6 +307,17 @@ void sendMail() {
 void closeApp() {
     gtk_window_destroy(GTK_WINDOW(windowLoginScreen));
 }
+void saveLoginInfo() {
+
+    FILE *loginInfo = fopen("logininfo.txt","w");
+    fprintf(loginInfo,
+        "%s %s %d"
+        ,gtk_editable_get_text(GTK_EDITABLE(entryGmail)),gtk_editable_get_text(GTK_EDITABLE(entryPassword)),1);
+    fclose(loginInfo);
+
+}
+
+
 
 int main(int argc, char **argv) {
     GtkApplication *app;
