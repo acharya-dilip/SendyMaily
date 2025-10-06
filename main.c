@@ -8,8 +8,10 @@ void displaySendyMaily();
 
 static void activate (GtkApplication *app,gpointer user_data) {
     GtkWidget *windowLoginScreen;
-    GtkWidget *parentGridLoginScreen;
+    GtkWidget *gridParentLoginScreen;
+    GtkWidget *labelGmail;
     GtkWidget *entryGmail;
+    GtkWidget *labelPassword;
     GtkWidget *entryPassword;
     GtkWidget *buttonLogin;
 
@@ -21,20 +23,28 @@ static void activate (GtkApplication *app,gpointer user_data) {
     gtk_window_present(GTK_WINDOW(windowLoginScreen));
 
     //Implementation of the parent grid for login Window
-    parentGridLoginScreen = gtk_grid_new();
-    gtk_window_set_child(GTK_WINDOW(windowLoginScreen),parentGridLoginScreen);
+    gridParentLoginScreen = gtk_grid_new();
+    gtk_window_set_child(GTK_WINDOW(windowLoginScreen),gridParentLoginScreen);
     //Margins & Paddings
-    gtk_widget_set_halign(parentGridLoginScreen, GTK_ALIGN_CENTER);
-    gtk_widget_set_valign(parentGridLoginScreen, GTK_ALIGN_CENTER);
+    gtk_widget_set_halign(gridParentLoginScreen, GTK_ALIGN_CENTER);
+    gtk_widget_set_valign(gridParentLoginScreen, GTK_ALIGN_CENTER);
 
+    //Implementation of label Gmail
+    labelGmail = gtk_label_new("GMail:");
+    gtk_grid_attach(GTK_GRID(gridParentLoginScreen),labelGmail,0,0,1,1);
     //Implementation of entry Gmail
     entryGmail = gtk_entry_new();
     gtk_entry_set_placeholder_text(GTK_ENTRY(entryGmail),"ENTER GMAIL");
+    gtk_grid_attach(GTK_GRID(gridParentLoginScreen),entryGmail,1,0,1,1);
 
+    //Implementation of Label Password
+    labelPassword = gtk_label_new("Pass:");
+    gtk_grid_attach(GTK_GRID(gridParentLoginScreen),labelPassword,0,1,1,1);
 
     //Implementation of entry Password
     entryPassword = gtk_entry_new();
     gtk_entry_set_placeholder_text(GTK_ENTRY(entryPassword),"ENTER PASSWORD");
+    gtk_grid_attach(GTK_GRID(gridParentLoginScreen),entryPassword,1,1,1,1);
 
 
 
