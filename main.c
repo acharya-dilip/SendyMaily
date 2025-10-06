@@ -3,6 +3,7 @@
 #include <curl/curl.h>
 void displaySendyMaily();
 void checkLogin();
+void sendMail();
 
 
 
@@ -219,6 +220,7 @@ void displaySendyMaily() {
     buttonSendMail=gtk_button_new_with_label("SEND");
     gtk_grid_attach(GTK_GRID(gridParent),buttonSendMail,0,4,2,1);
     gtk_widget_set_size_request(buttonSendMail,380,-1);
+    g_signal_connect(buttonSendMail,"clicked",G_CALLBACK(sendMail),NULL);
     //Margins & paddings
     gtk_widget_set_margin_start(buttonSendMail,10);
     gtk_widget_set_margin_end(buttonSendMail,10);
@@ -226,11 +228,29 @@ void displaySendyMaily() {
     gtk_widget_set_margin_bottom(buttonSendMail,10);
 
 
-
-
-
-
 }
+
+
+
+void sendMail() {
+    CURL *curl=curl_easy_init();
+    if (!curl) return;
+    if (curl) {
+        //Connecting to the smpt sevr
+        curl_easy_setopt(curl,CURLOPT_URL,"smtp://smtp.gmail.com:587");
+        curl_easy_setopt(curl,CURLOPT_USE_SSL,(long)CURLUSESSL_ALL);
+
+        curl_easy_setopt(curl,CURLOPT_USERNAME,gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
+        curl_easy_setopt(curl,CURLOPT_PASSWORD,gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
+    }
+}
+
+
+
+
+
+
+
 
 
 
