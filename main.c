@@ -69,6 +69,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
     //Implementation of entry Password
     entryPassword = gtk_entry_new();
     //gtk_entry_set_placeholder_text(GTK_ENTRY(entryPassword),"ENTER PASSWORD");
+    gtk_entry_set_visibility(GTK_ENTRY(entryPassword),FALSE);
     gtk_grid_attach(GTK_GRID(gridParentLoginScreen),entryPassword,1,1,3,1);
     //Margins & Paddings
     gtk_widget_set_size_request(entryPassword,270,-1);
@@ -95,7 +96,7 @@ static void activate (GtkApplication *app,gpointer user_data) {
 void checkLogin() {
     CURL *curl=curl_easy_init();
     CURLcode res;
-    if (!curl) return;
+    //if (!curl) return;
     if (curl) {
         //conectin to the google smtp server to send credentials
         curl_easy_setopt(curl,CURLOPT_URL,"smtp://smtp.gmail.com:587");
@@ -108,31 +109,40 @@ void checkLogin() {
         curl_easy_setopt(curl,CURLOPT_READFUNCTION,NULL);
 
         //sending the credentials
+        // char gmail[50];
+        // strcpy(gmail,gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
+        // char password[50];
+        // strcpy(password,gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
         curl_easy_setopt(curl,CURLOPT_USERNAME,gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
-        curl_easy_setopt(curl,CURLOPT_USERNAME,gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
+        //printf("%s",gtk_editable_get_text(GTK_EDITABLE(entryGmail)));
+        curl_easy_setopt(curl,CURLOPT_PASSWORD,gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
+        //printf("%s",gtk_editable_get_text(GTK_EDITABLE(entryPassword)));
 
-        res=curl_easy_perform(curl);
+        res = curl_easy_perform(curl);
 
-        if (res==CURLE_OK) {
+        if (res == CURLE_OK) {
             gtk_widget_set_visible(windowLoginScreen,FALSE);
+            printf("HelloMOCO");
             displaySendyMaily();
         }
-        curl_easy_cleanup(curl);
+        //curl_easy_cleanup(curl);
     }
 }
 
-
+GtkWidget *windowSendyMaily;
+GtkWidget *entryGmailTo;
+GtkWidget *entryGmailSubject;
+GtkWidget *textviewGmailBody;
 void displaySendyMaily() {
-    GtkWidget *windowSendyMaily;
+
     GtkWidget *gridParent;
     GtkWidget *entryGmailFrom;
-    GtkWidget *entryGmailTo;
-    GtkWidget *entryGmailSubject;
-    GtkWidget *textviewGmailBody;
     GtkWidget *buttonSendMail;
 
     windowSendyMaily = gtk_window_new();
     gtk_window_set_title(GTK_WINDOW(windowSendyMaily),"SendyMaily");
+    gtk_window_set_default_size(GTK_WINDOW(windowSendyMaily),400,400);
+    gtk_window_present(GTK_WINDOW(windowSendyMaily));
 
 
 }
