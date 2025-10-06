@@ -304,7 +304,7 @@ void sendMail() {
         curl_easy_perform(curl);
         //close file
         fclose(payload);
-        remove(email.txt);
+        remove("email.txt");
         //cleanup
         curl_slist_free_all(recipients);
         curl_easy_cleanup(curl);
