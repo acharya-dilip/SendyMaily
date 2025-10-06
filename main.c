@@ -147,6 +147,14 @@ void displaySendyMaily() {
     gtk_window_set_default_size(GTK_WINDOW(windowSendyMaily),400,400);
     gtk_window_present(GTK_WINDOW(windowSendyMaily));
 
+    //Implementation of gridparent
+    gridParent =gtk_grid_new();
+    gtk_window_set_child(GTK_WINDOW(windowSendyMaily),gridParent);
+
+    //Margins & Paddings
+    gtk_widget_set_halign(gridParent,GTK_ALIGN_CENTER);
+
+
     //Implement the To gmail label
     labelGmailTo=gtk_label_new("To:");
     gtk_grid_attach(GTK_GRID(gridParent),labelGmailTo,0,0,1,1);
